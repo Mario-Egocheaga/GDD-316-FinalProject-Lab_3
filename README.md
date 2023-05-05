@@ -1,10 +1,3 @@
-# Project - Sorrow
-A little work-in-progress horror game
-
-# Development
-Follow on Trello!
-https://trello.com/b/viWeb2ts/project-sorrow
-
 
 # License
 This work is licensed under a
