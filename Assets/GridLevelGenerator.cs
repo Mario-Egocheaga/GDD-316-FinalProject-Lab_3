@@ -41,6 +41,7 @@ public class GridLevelGenerator : MonoBehaviour
 
                 Vector3 PosPicked = new Vector3((x - gridWidth / 2f + .5f) * cellSize, 0 * cellSize, (y - gridHeight / 2f + .5f) * cellSize);
 
+                // Ends of the level of the Width of the grid
                 if (PosPicked.x == 12 || PosPicked.x == -12)
                 {
                     if (Random.value > .5)
@@ -56,11 +57,26 @@ public class GridLevelGenerator : MonoBehaviour
 
                 }
 
+                // Ends of the level of Length of the grid
                 if (PosPicked.z == 12 || PosPicked.z == -12)
                 {
                     if (Random.value > .5)
                     {
                         GameObject endProp = props[Random.Range(0, 2)];
+                        Vector3 pos = new Vector3((x - gridWidth / 2f + .5f) * cellSize, 0 * cellSize, (y - gridHeight / 2f + 0.5f) * cellSize);
+
+                        // Instantiate the prop at the calculated position
+                        GameObject propPlaced = Instantiate(endProp, pos, Quaternion.identity);
+                        propPlaced.transform.parent = parent.transform;
+                        propPlaced.transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y + Random.Range(0f, 360f), transform.rotation.z);
+                    }
+                }
+
+                if ((PosPicked.x < 10 || PosPicked.x > -10) && (PosPicked.z < 10 || PosPicked.z > -10))
+                {
+                    if (Random.value > .5)
+                    {
+                        GameObject endProp = props[Random.Range(2, props.Length - 1)];
                         Vector3 pos = new Vector3((x - gridWidth / 2f + .5f) * cellSize, 0 * cellSize, (y - gridHeight / 2f + 0.5f) * cellSize);
 
                         // Instantiate the prop at the calculated position
