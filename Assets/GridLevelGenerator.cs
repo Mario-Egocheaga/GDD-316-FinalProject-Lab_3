@@ -15,13 +15,18 @@ public class GridLevelGenerator : MonoBehaviour
 
     public float minPropDistance = 2f;  // Minimum distance between props
 
+    //Number of Walls Needed
     public int numWalls = 4;
+
+    public LayerMask spawnObjectLayer;
+
+    bool canPlace;
 
     void Start()
     {
         parent = this.transform;
         GenerateLevel();
-        spawnInfrastructure();
+        //spawnInfrastructure();
         ChangeTransform();
     }
 
@@ -32,15 +37,49 @@ public class GridLevelGenerator : MonoBehaviour
         {
             for (int y = 0; y < gridHeight; y++)
             {
+
+
+                Vector3 PosPicked = new Vector3((x - gridWidth / 2f + .5f) * cellSize, 0 * cellSize, (y - gridHeight / 2f + .5f) * cellSize);
+
+                if (PosPicked.x == 12 || PosPicked.x == -12)
+                {
+                    if (Random.value > .5)
+                    {
+                        GameObject endProp = props[Random.Range(0, 2)];
+                        Vector3 pos = new Vector3((x - gridWidth / 2f + .5f) * cellSize, 0 * cellSize, (y - gridHeight / 2f + 0.5f) * cellSize);
+
+                        // Instantiate the prop at the calculated position
+                        GameObject propPlaced = Instantiate(endProp, pos, Quaternion.identity);
+                        propPlaced.transform.parent = parent.transform;
+                        propPlaced.transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y + Random.Range(0f, 360f), transform.rotation.z);
+                    }
+
+                }
+
+                if (PosPicked.z == 12 || PosPicked.z == -12)
+                {
+                    if (Random.value > .5)
+                    {
+                        GameObject endProp = props[Random.Range(0, 2)];
+                        Vector3 pos = new Vector3((x - gridWidth / 2f + .5f) * cellSize, 0 * cellSize, (y - gridHeight / 2f + 0.5f) * cellSize);
+
+                        // Instantiate the prop at the calculated position
+                        GameObject propPlaced = Instantiate(endProp, pos, Quaternion.identity);
+                        propPlaced.transform.parent = parent.transform;
+                        propPlaced.transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y + Random.Range(0f, 360f), transform.rotation.z);
+                    }
+                }
+
                 // Loop through each layer of props
                 for (int layer = 0; layer < numLayers; layer++)
                 {
+
                     /*
                     // Choose whether to place a prop in this cell and layer based on the prop density
                     if (Random.value < propDensity)
                     {
                         // Choose a random prop from the array
-                        GameObject prop = props[Random.Range(0, props.Length)];
+                        GameObject prop = props[Random.Range(0, props.Length - 1)];
                         
                         // Calculate the position of the prop within the cell and layer
                         Vector3 position = new Vector3((x - gridWidth / 2f + 0.5f) * cellSize, layer * cellSize, (y - gridHeight / 2f + 0.5f) * cellSize);
@@ -50,6 +89,8 @@ public class GridLevelGenerator : MonoBehaviour
                         propPlaced.transform.parent = parent.transform;
                         propPlaced.transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y + Random.Range(0f, 360f), transform.rotation.z);
 
+
+                        Debug.Log(propPlaced.transform);
                     }
                     */
                 }
@@ -59,19 +100,37 @@ public class GridLevelGenerator : MonoBehaviour
 
     void spawnInfrastructure()
     {
+        spawnCircle();
+    }
+
+    void spawnSquare()
+    {
+        GameObject wall = wall = props[7];
+
+        Vector3 center = new Vector3(transform.position.x + Random.Range(-8f, 8f), 0, transform.position.z + Random.Range(-8f, 8f));
+
+        for (int i = 0; i < numWalls - 1; i++)
+        { 
+           // Vector3 objectPos = Vector3.Lerp()
+        }
+    }
+
+    void spawnCircle()
+    {
+
         GameObject wall = wall = props[7];
 
         float radius = 5;
 
-        Vector3 center = new Vector3(transform.position.x +  Random.Range(-8f, 8f), 0, transform.position.z + Random.Range(-8f, 8f));
+        Vector3 center = new Vector3(transform.position.x + Random.Range(-8f, 8f), 0, transform.position.z + Random.Range(-8f, 8f));
 
         for (int i = 0; i < numWalls; i++)
         {
-            Vector3 pos = RanCircle(center, 2.0f);
-            Quaternion rot = Quaternion.FromToRotation(Vector3.forward, center-pos);
+            Vector3 pos = RanCircle(center, 5.0f);
+            Quaternion rot = Quaternion.FromToRotation(Vector3.right, center - pos);
 
             GameObject wallPlaced = Instantiate(wall, pos, rot);
-
+            wallPlaced.transform.parent = parent.transform;
         }
     }
 
@@ -89,5 +148,33 @@ public class GridLevelGenerator : MonoBehaviour
     void ChangeTransform()
     {
         parent.transform.position = new Vector3(this.transform.position.x - 2 , 0, this.transform.position.z - 2);
+    }
+
+    void PositionRayCast(GameObject objectPlaced)
+    {
+        RaycastHit hit;
+
+        float rayCastDist = 100f;
+        float overlapTestBoxSize = 1f;
+
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, rayCastDist))
+        {
+            Quaternion spawnRot = Quaternion.FromToRotation(Vector3.up, hit.normal);
+
+            Vector3 overlapTestBoxScale = new Vector3(overlapTestBoxSize, overlapTestBoxSize, overlapTestBoxSize);
+            Collider[] collidersInsiderOverlapBox = new Collider[1];
+            int numofCollidersFound = Physics.OverlapBoxNonAlloc(hit.point, overlapTestBoxScale, collidersInsiderOverlapBox, spawnRot, spawnObjectLayer);
+
+            Debug.Log("number of colliders found " + numofCollidersFound);
+
+            if (numofCollidersFound == 0)
+            {
+                canPlace = true;
+            }
+            else
+            {
+                canPlace = false;
+            }
+        }
     }
 }
