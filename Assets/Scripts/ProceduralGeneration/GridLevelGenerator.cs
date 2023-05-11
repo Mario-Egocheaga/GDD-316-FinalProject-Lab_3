@@ -148,7 +148,7 @@ public class GridLevelGenerator : MonoBehaviour
     void spawnCircle()
     {
 
-        GameObject wall = wall = props[7];
+        GameObject wall = wall = props[props.Length - 1];
 
         float radius = 5;
 

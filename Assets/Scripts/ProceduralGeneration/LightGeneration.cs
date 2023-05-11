@@ -9,7 +9,6 @@ public class LightGeneration : MonoBehaviour
 
     public GameObject[] lightSources;
     public float spawnRadius;
-    public int numLights;
     public ShadowDetection.ShadowDetection shadow;
 
 
@@ -23,7 +22,7 @@ public class LightGeneration : MonoBehaviour
 
     void SpawnLights()
     {
-        for (int i = 0; i < numLights; i++)
+        for (int i = 0; i < GameManager.lightsSpawned; i++)
         {
             GameObject lightProp = lightSources[Random.Range(0, lightSources.Length)];
             GameObject lightInstance = Instantiate(lightProp, new Vector3(parent.transform.position.x + Random.Range(-12f, 12f), 0, parent.transform.position.z + Random.Range(-12f, 12f)), Quaternion.identity);

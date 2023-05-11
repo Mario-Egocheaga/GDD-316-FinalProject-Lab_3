@@ -1,17 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class TimerUI : MonoBehaviour
 {
-    public float timeRemaining = 10;
+    public static float timeRemaining = 45;
+    public float timerAdd = 45;
     public bool timerIsRunning = false;
-    public Text timeText;
+    public TextMeshProUGUI timeText;
+
     private void Start()
     {
         // Starts the timer automatically
         timerIsRunning = true;
+        timeText = GetComponent<TextMeshProUGUI>();
+
+        timeRemaining = timerAdd;
+
     }
     void Update()
     {

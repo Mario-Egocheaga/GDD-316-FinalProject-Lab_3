@@ -3537,7 +3537,6 @@ MonoBehaviour:
   - {fileID: 2955407062861176870, guid: 43e9c792ae54ae64aa5fb4a12d5746f2, type: 3}
   - {fileID: 6681709101020383350, guid: bc55545f3f3ce7542a4378aef38b1f43, type: 3}
   spawnRadius: 6
-  numLights: 5
   shadow: {fileID: 1091434006}
 --- !u!4 &674968770
 Transform:
@@ -6397,12 +6396,11 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1300837530}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de40f8eec5aa6d64fb967d2ec212f303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 30
   levelName: Level 4
 --- !u!4 &1303196629 stripped
 Transform:
@@ -6798,7 +6796,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23352
+  m_Name: pb_Mesh61474
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -9695,11 +9693,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1673695934705061704, guid: 6527d8df1f6f38f4399681b0d995fc75, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000016760408
+      value: 0.000000016760414
       objectReference: {fileID: 0}
     - target: {fileID: 1673695934705061704, guid: 6527d8df1f6f38f4399681b0d995fc75, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000038920733
+      value: -0.0000000038920747
       objectReference: {fileID: 0}
     - target: {fileID: 1712766199680041275, guid: 6527d8df1f6f38f4399681b0d995fc75, type: 3}
       propertyPath: m_Name
@@ -9737,6 +9735,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7981038613896513136, guid: 6527d8df1f6f38f4399681b0d995fc75, type: 3}
+      propertyPath: gm
+      value: 
+      objectReference: {fileID: 1300837530}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9778,7 +9780,6 @@ MonoBehaviour:
   - {fileID: 1902530880653180, guid: b0c71b64a7dfbd74cb2f2acf7a3637a3, type: 3}
   - {fileID: 1791774932667290, guid: 419d31cd2358c274b93f3ed5fac4773f, type: 3}
   - {fileID: 1783081465637762, guid: b995d8a7dcf811740b66ae5cf81e4fa6, type: 3}
-  - {fileID: 1770882891172268, guid: 3efcc829b17627b42be7c2557c91a937, type: 3}
   - {fileID: 1016869591269748, guid: 3f3f0ad0013c05f478f38f3920e05817, type: 3}
   - {fileID: 1721629799280222, guid: effb1b31d7e11a54e9b051312c1a2ee4, type: 3}
   gridWidth: 9

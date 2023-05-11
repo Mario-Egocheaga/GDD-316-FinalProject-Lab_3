@@ -5,16 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public float timer;
     public string levelName;
-
     public static int levelNum = 0;
-    public static int enemiesSpawned = 1;
+    public static int enemiesSpawned = 2;
+    public static int wallsSpawned = 1;
+    public static int lightsSpawned = 5;
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        StartCoroutine(nextLevel(timer));
+        StartCoroutine(nextLevel(TimerUI.timeRemaining));
     }
 
     IEnumerator nextLevel(float timer)
@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
         if (levelNum % 5 == 0)
         {
             enemiesSpawned++;
+            wallsSpawned++;
+            lightsSpawned++;
+            TimerUI.timeRemaining = TimerUI.timeRemaining + 15;
         }
         SceneManager.LoadScene(levelName);
     }
