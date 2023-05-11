@@ -26,7 +26,7 @@ public class GridLevelGenerator : MonoBehaviour
     {
         parent = this.transform;
         GenerateLevel();
-        //spawnInfrastructure();
+        spawnInfrastructure();
         ChangeTransform();
     }
 
@@ -37,8 +37,6 @@ public class GridLevelGenerator : MonoBehaviour
         {
             for (int y = 0; y < gridHeight; y++)
             {
-
-
                 Vector3 PosPicked = new Vector3((x - gridWidth / 2f + .5f) * cellSize, 0 * cellSize, (y - gridHeight / 2f + .5f) * cellSize);
 
                 // Ends of the level of the Width of the grid
@@ -49,10 +47,15 @@ public class GridLevelGenerator : MonoBehaviour
                         GameObject endProp = props[Random.Range(0, 2)];
                         Vector3 pos = new Vector3((x - gridWidth / 2f + .5f) * cellSize, 0 * cellSize, (y - gridHeight / 2f + 0.5f) * cellSize);
 
-                        // Instantiate the prop at the calculated position
-                        GameObject propPlaced = Instantiate(endProp, pos, Quaternion.identity);
-                        propPlaced.transform.parent = parent.transform;
-                        propPlaced.transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y + Random.Range(0f, 360f), transform.rotation.z);
+                        bool isOverlap = CheckOverLap(pos);
+
+                        if (!isOverlap)
+                        {
+                            // Instantiate the prop at the calculated position
+                            GameObject propPlaced = Instantiate(endProp, pos, Quaternion.identity);
+                            propPlaced.transform.parent = parent.transform;
+                            propPlaced.transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y + Random.Range(0f, 360f), transform.rotation.z);
+                        }
                     }
 
                 }
@@ -65,10 +68,16 @@ public class GridLevelGenerator : MonoBehaviour
                         GameObject endProp = props[Random.Range(0, 2)];
                         Vector3 pos = new Vector3((x - gridWidth / 2f + .5f) * cellSize, 0 * cellSize, (y - gridHeight / 2f + 0.5f) * cellSize);
 
-                        // Instantiate the prop at the calculated position
-                        GameObject propPlaced = Instantiate(endProp, pos, Quaternion.identity);
-                        propPlaced.transform.parent = parent.transform;
-                        propPlaced.transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y + Random.Range(0f, 360f), transform.rotation.z);
+
+                        bool isOverlap = CheckOverLap(pos);
+
+                        if (!isOverlap)
+                        {
+                            // Instantiate the prop at the calculated position
+                            GameObject propPlaced = Instantiate(endProp, pos, Quaternion.identity);
+                            propPlaced.transform.parent = parent.transform;
+                            propPlaced.transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y + Random.Range(0f, 360f), transform.rotation.z);
+                        }
                     }
                 }
 
@@ -79,10 +88,15 @@ public class GridLevelGenerator : MonoBehaviour
                         GameObject endProp = props[Random.Range(2, props.Length - 1)];
                         Vector3 pos = new Vector3((x - gridWidth / 2f + .5f) * cellSize, 0 * cellSize, (y - gridHeight / 2f + 0.5f) * cellSize);
 
-                        // Instantiate the prop at the calculated position
-                        GameObject propPlaced = Instantiate(endProp, pos, Quaternion.identity);
-                        propPlaced.transform.parent = parent.transform;
-                        propPlaced.transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y + Random.Range(0f, 360f), transform.rotation.z);
+                        bool isOverlap = CheckOverLap(pos);
+
+                        if (!isOverlap)
+                        {
+                            // Instantiate the prop at the calculated position
+                            GameObject propPlaced = Instantiate(endProp, pos, Quaternion.identity);
+                            propPlaced.transform.parent = parent.transform;
+                            propPlaced.transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y + Random.Range(0f, 360f), transform.rotation.z);
+                        }
                     }
                 }
 
@@ -145,8 +159,13 @@ public class GridLevelGenerator : MonoBehaviour
             Vector3 pos = RanCircle(center, 5.0f);
             Quaternion rot = Quaternion.FromToRotation(Vector3.right, center - pos);
 
-            GameObject wallPlaced = Instantiate(wall, pos, rot);
-            wallPlaced.transform.parent = parent.transform;
+            bool isOverlap = CheckOverLap(pos);
+
+            if (!isOverlap)
+            {
+                GameObject wallPlaced = Instantiate(wall, pos, rot);
+                wallPlaced.transform.parent = parent.transform;
+            }
         }
     }
 
@@ -166,31 +185,18 @@ public class GridLevelGenerator : MonoBehaviour
         parent.transform.position = new Vector3(this.transform.position.x - 2 , 0, this.transform.position.z - 2);
     }
 
-    void PositionRayCast(GameObject objectPlaced)
+    private bool CheckOverLap(Vector3 spawnPos)
     {
-        RaycastHit hit;
+        Collider[] colliders = Physics.OverlapSphere(spawnPos, 1f);
 
-        float rayCastDist = 100f;
-        float overlapTestBoxSize = 1f;
-
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, rayCastDist))
+        foreach (var collider in colliders)
         {
-            Quaternion spawnRot = Quaternion.FromToRotation(Vector3.up, hit.normal);
-
-            Vector3 overlapTestBoxScale = new Vector3(overlapTestBoxSize, overlapTestBoxSize, overlapTestBoxSize);
-            Collider[] collidersInsiderOverlapBox = new Collider[1];
-            int numofCollidersFound = Physics.OverlapBoxNonAlloc(hit.point, overlapTestBoxScale, collidersInsiderOverlapBox, spawnRot, spawnObjectLayer);
-
-            Debug.Log("number of colliders found " + numofCollidersFound);
-
-            if (numofCollidersFound == 0)
+            if (collider.gameObject.CompareTag("Prop"))
             {
-                canPlace = true;
-            }
-            else
-            {
-                canPlace = false;
+                return true;
             }
         }
+
+        return false;
     }
 }
