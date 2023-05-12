@@ -57,12 +57,22 @@ public class EnemyAIManager : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         
+        /*
         if (playerInAttackRange && !alreadyAttacked)
         {
             playerHealth.OnTest();
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
+        */
         
     }
+
+    private void ResetAttack()
+    {
+        alreadyAttacked = false;
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {

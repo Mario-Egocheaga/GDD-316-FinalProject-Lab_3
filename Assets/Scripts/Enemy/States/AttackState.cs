@@ -10,6 +10,13 @@ public class AttackState : EnemyAIStates
 
     public PatrolState patrolState;
 
+    GameObject player;
+
+    private void Start()
+    {
+        player = GameObject.FindWithTag("Player");
+    }
+
     public override EnemyAIStates RunCurrentState()
     {
         AttackPlayer();
@@ -39,6 +46,7 @@ public class AttackState : EnemyAIStates
         {
             ///Attack code here
             aiManager.anim.Play("Attack");
+            player.GetComponent<HealthController>().OnTest();
             ///End of attack code
 
             aiManager.alreadyAttacked = true;

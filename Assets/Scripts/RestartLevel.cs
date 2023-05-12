@@ -19,6 +19,7 @@ public class RestartLevel : MonoBehaviour
         GameManager.enemiesSpawned = 2;
         GameManager.wallsSpawned = 1;
         GameManager.lightsSpawned = 5;
+        GameManager.healthSpawned = 1;
         TimerUI.timeRemaining = 45;
     }
 }

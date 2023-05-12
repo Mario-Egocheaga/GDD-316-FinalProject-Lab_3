@@ -11,12 +11,8 @@ public class HealthGeneration : MonoBehaviour
 
     void Start()
     {
-        if (HealthController.currentHealth < 100)
-        {
             parent = this.transform;
             SpawnHealth();
-
-        }
     }
 
     void SpawnHealth()

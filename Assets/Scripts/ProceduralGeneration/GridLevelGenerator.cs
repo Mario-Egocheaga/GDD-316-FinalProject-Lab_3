@@ -45,14 +45,13 @@ public class GridLevelGenerator : MonoBehaviour
                     if (Random.value > .5)
                     {
                         GameObject endProp = props[Random.Range(0, 2)];
-                        Vector3 pos = new Vector3((x - gridWidth / 2f + .5f) * cellSize, 0 * cellSize, (y - gridHeight / 2f + 0.5f) * cellSize);
 
-                        bool isOverlap = CheckOverLap(pos);
+                        bool isOverlap = CheckOverLap(PosPicked);
 
                         if (!isOverlap)
                         {
                             // Instantiate the prop at the calculated position
-                            GameObject propPlaced = Instantiate(endProp, pos, Quaternion.identity);
+                            GameObject propPlaced = Instantiate(endProp, PosPicked, Quaternion.identity);
                             propPlaced.transform.parent = parent.transform;
                             propPlaced.transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y + Random.Range(0f, 360f), transform.rotation.z);
                         }
@@ -66,64 +65,38 @@ public class GridLevelGenerator : MonoBehaviour
                     if (Random.value > .5)
                     {
                         GameObject endProp = props[Random.Range(0, 2)];
-                        Vector3 pos = new Vector3((x - gridWidth / 2f + .5f) * cellSize, 0 * cellSize, (y - gridHeight / 2f + 0.5f) * cellSize);
 
 
-                        bool isOverlap = CheckOverLap(pos);
+                        bool isOverlap = CheckOverLap(PosPicked);
 
                         if (!isOverlap)
                         {
                             // Instantiate the prop at the calculated position
-                            GameObject propPlaced = Instantiate(endProp, pos, Quaternion.identity);
+                            GameObject propPlaced = Instantiate(endProp, PosPicked, Quaternion.identity);
                             propPlaced.transform.parent = parent.transform;
                             propPlaced.transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y + Random.Range(0f, 360f), transform.rotation.z);
                         }
                     }
                 }
 
-                if ((PosPicked.x < 10 || PosPicked.x > -10) && (PosPicked.z < 10 || PosPicked.z > -10))
+                if ((PosPicked.x < 8 || PosPicked.x > -8) && (PosPicked.z < 8 || PosPicked.z > -8))
                 {
                     if (Random.value > .5)
                     {
-                        GameObject endProp = props[Random.Range(2, props.Length - 1)];
-                        Vector3 pos = new Vector3((x - gridWidth / 2f + .5f) * cellSize, 0 * cellSize, (y - gridHeight / 2f + 0.5f) * cellSize);
+                        GameObject endProp = props[Random.Range(3, props.Length - 1)];
 
-                        bool isOverlap = CheckOverLap(pos);
+                        bool isOverlap = CheckOverLap(PosPicked);
 
                         if (!isOverlap)
                         {
                             // Instantiate the prop at the calculated position
-                            GameObject propPlaced = Instantiate(endProp, pos, Quaternion.identity);
+                            GameObject propPlaced = Instantiate(endProp, PosPicked, Quaternion.identity);
                             propPlaced.transform.parent = parent.transform;
                             propPlaced.transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y + Random.Range(0f, 360f), transform.rotation.z);
                         }
                     }
                 }
 
-                // Loop through each layer of props
-                for (int layer = 0; layer < numLayers; layer++)
-                {
-
-                    /*
-                    // Choose whether to place a prop in this cell and layer based on the prop density
-                    if (Random.value < propDensity)
-                    {
-                        // Choose a random prop from the array
-                        GameObject prop = props[Random.Range(0, props.Length - 1)];
-                        
-                        // Calculate the position of the prop within the cell and layer
-                        Vector3 position = new Vector3((x - gridWidth / 2f + 0.5f) * cellSize, layer * cellSize, (y - gridHeight / 2f + 0.5f) * cellSize);
-
-                        // Instantiate the prop at the calculated position
-                        GameObject propPlaced = Instantiate(prop, position, Quaternion.identity);
-                        propPlaced.transform.parent = parent.transform;
-                        propPlaced.transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y + Random.Range(0f, 360f), transform.rotation.z);
-
-
-                        Debug.Log(propPlaced.transform);
-                    }
-                    */
-                }
             }
         }
     }

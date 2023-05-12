@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public static int enemiesSpawned = 2;
     public static int wallsSpawned = 1;
     public static int lightsSpawned = 5;
-    public static int healthSpawned;
+    public static int healthSpawned = 1;
 
     void Start()
     {

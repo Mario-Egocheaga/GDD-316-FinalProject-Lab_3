@@ -2523,7 +2523,7 @@ Transform:
   - {fileID: 3479213367637063537}
   - {fileID: 5120059966031903032}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &3785919541399209783
 Animator:
@@ -2589,7 +2589,7 @@ MonoBehaviour:
   nextWaypoint: 0
   timeBetweenAttacks: 1.5
   alreadyAttacked: 0
-  sightRange: 10
+  sightRange: 12
   attackRange: 1.5
   playerInSightRange: 0
   playerInAttackRange: 0

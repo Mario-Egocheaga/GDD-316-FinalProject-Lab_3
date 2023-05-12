@@ -28,7 +28,10 @@ public class HealthPack : MonoBehaviour
 
     public void OnPickUp()
     {
-        HealthController.currentHealth = HealthController.currentHealth + 15;
+        if (HealthController.currentHealth < 100)
+        {
+            HealthController.currentHealth = HealthController.currentHealth + 15;
+        }
         Destroy(gameObject);
     }
 }
