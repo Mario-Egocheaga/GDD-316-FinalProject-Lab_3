@@ -1392,7 +1392,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-32962
+  m_Name: pb_Mesh-141788
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -8433,7 +8433,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de40f8eec5aa6d64fb967d2ec212f303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 30
   levelName: Level 2
 --- !u!4 &1303196629 stripped
 Transform:
@@ -13325,19 +13324,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1852686726453206868, guid: 6527d8df1f6f38f4399681b0d995fc75, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000001682843
+      value: -0.000000016828436
       objectReference: {fileID: 0}
     - target: {fileID: 1852686726453206868, guid: 6527d8df1f6f38f4399681b0d995fc75, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000035865673
+      value: 0.0000000035865675
+      objectReference: {fileID: 0}
+    - target: {fileID: 4185511979069761225, guid: 6527d8df1f6f38f4399681b0d995fc75, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6463746457991136106, guid: 6527d8df1f6f38f4399681b0d995fc75, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000033656864
+      value: -0.000000033656864
       objectReference: {fileID: 0}
     - target: {fileID: 6463746457991136106, guid: 6527d8df1f6f38f4399681b0d995fc75, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000071731336
+      value: 0.0000000071731336
       objectReference: {fileID: 0}
     - target: {fileID: 7333188439137824559, guid: 6527d8df1f6f38f4399681b0d995fc75, type: 3}
       propertyPath: m_AnchorMax.x
@@ -13346,6 +13349,14 @@ PrefabInstance:
     - target: {fileID: 7333188439137824559, guid: 6527d8df1f6f38f4399681b0d995fc75, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7981038613896513136, guid: 6527d8df1f6f38f4399681b0d995fc75, type: 3}
+      propertyPath: gm
+      value: 
+      objectReference: {fileID: 1300837530}
+    - target: {fileID: 9033648642938904315, guid: 6527d8df1f6f38f4399681b0d995fc75, type: 3}
+      propertyPath: m_MaxValue
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13404,17 +13415,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3817159462175950836, guid: e66ff5211f09c494793ff788b8ddc5b1, type: 3}
-      propertyPath: visibleTarget
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7854784592655383108, guid: e66ff5211f09c494793ff788b8ddc5b1, type: 3}
       propertyPath: m_Name
       value: Enemy Test
-      objectReference: {fileID: 0}
-    - target: {fileID: 8577483853409044704, guid: e66ff5211f09c494793ff788b8ddc5b1, type: 3}
-      propertyPath: player
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

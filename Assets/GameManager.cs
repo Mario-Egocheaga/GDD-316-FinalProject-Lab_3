@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static int enemiesSpawned = 2;
     public static int wallsSpawned = 1;
     public static int lightsSpawned = 5;
+    public static int healthSpawned;
 
     void Start()
     {
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
             wallsSpawned++;
             lightsSpawned++;
             TimerUI.timeRemaining = TimerUI.timeRemaining + 15;
+            healthSpawned++;
         }
         SceneManager.LoadScene(levelName);
     }

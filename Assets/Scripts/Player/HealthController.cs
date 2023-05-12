@@ -8,13 +8,10 @@ using UnityEngine.UI;
 public class HealthController : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI healthText;
-
-    [SerializeField]
     private float maximumInjuredLayerWeight;
 
     private float maximumHealth = 100;
-    private float currentHealth;
+    public static float currentHealth;
 
     private Animator animator;
     private int injuredLayerIndex;
@@ -35,16 +32,18 @@ public class HealthController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        healthSlider.value = currentHealth;
+
         if (currentHealth <= 0)
         {
             gameOverScreen.SetActive(true);
+
         }
     }
 
     void InjuredLayerAnim()
     {
         float healthPercentage = currentHealth / maximumHealth;
-        healthText.text = $"Health: {healthPercentage * 100}%";
 
         float currentInjuredLayerWeight = animator.GetLayerWeight(injuredLayerIndex);
         float targetInjuredLayerWeight = (healthPercentage * 10) * maximumInjuredLayerWeight;
@@ -57,17 +56,17 @@ public class HealthController : MonoBehaviour
                 0.2f)
             );
     }
-
+    
     public void OnTest()
     {
         currentHealth -= maximumHealth / 10;
-
+        /*
         if (currentHealth < 0)
         {
             currentHealth = maximumHealth;
             animator.SetLayerWeight(1, 0f);
         }
-
+        */
         InjuredLayerAnim();
     }
 

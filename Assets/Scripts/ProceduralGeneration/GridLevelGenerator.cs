@@ -26,7 +26,7 @@ public class GridLevelGenerator : MonoBehaviour
     {
         parent = this.transform;
         GenerateLevel();
-        spawnInfrastructure();
+        spawnInfrastructure(GameManager.wallsSpawned);
         ChangeTransform();
     }
 
@@ -128,9 +128,13 @@ public class GridLevelGenerator : MonoBehaviour
         }
     }
 
-    void spawnInfrastructure()
+    void spawnInfrastructure(int walls)
     {
-        spawnCircle();
+        for (int x = 0; x < walls; x++)
+        {
+            spawnCircle();
+
+        }
     }
 
     void spawnSquare()

@@ -2046,6 +2046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f31651e9eecad44b7e0aaf06d58e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gm: {fileID: 0}
 --- !u!1 &3413734467712596859
 GameObject:
   m_ObjectHideFlags: 0
@@ -2804,7 +2805,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3343,6 +3344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 244aca467a642d845836adcd34a1787f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerAdd: 45
   timerIsRunning: 0
   timeText: {fileID: 0}
 --- !u!1 &5812529286481156364
